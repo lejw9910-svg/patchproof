@@ -193,3 +193,7 @@ Licensed under the [MIT License](LICENSE).
 
 The local fixture engine, external-candidate verification, audit observation,
 curated benchmark, and evidence packaging are implemented
+
+The [first hosted security workflow](https://github.com/lejw9910-svg/patchproof/actions/runs/38343302335)
+passed on Python 3.10, 3.12, and 3.13 for commit `1f19cd3`. The committed
+`reports/application/` files record the separate local verification run.
