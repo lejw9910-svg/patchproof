@@ -199,12 +199,6 @@ eligibility, MFA, and other CVP account controls must be verified by the applica
 repository code does not establish them. See the [research plan](docs/research-plan.md)
 and [security control evidence register](docs/security-controls.md).
 
-The project also supports an **individual Claude Cyber Verification Program
-(CVP) Defense Access application**. It is independently developed and makes no
-claim of Anthropic affiliation, certification, or approval. The application
-materials distinguish this local work from proposed Claude-assisted research
-and disclose the applicant's lack of prior public security research history.
-
 - [신청 준비 현황 — 한국어](docs/cvp-readiness.ko.md)
 - [English application draft](docs/cvp-application.md)
 - [Current official requirements and project fit](docs/cvp-use-case.md)
