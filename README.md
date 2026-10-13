@@ -192,13 +192,4 @@ Licensed under the [MIT License](LICENSE).
 ## Status of the research
 
 The local fixture engine, external-candidate verification, audit observation,
-curated benchmark, and evidence packaging are implemented. Hosted GitHub Actions
-results, independent review, third-party vulnerability disclosures, and live
-Claude-assisted runs have not been established. Account identity, paid-plan
-eligibility, MFA, and other CVP account controls must be verified by the applicant;
-repository code does not establish them. See the [research plan](docs/research-plan.md)
-and [security control evidence register](docs/security-controls.md).
-
-- [신청 준비 현황 — 한국어](docs/cvp-readiness.ko.md)
-- [English application draft](docs/cvp-application.md)
-- [Current official requirements and project fit](docs/cvp-use-case.md)
+curated benchmark, and evidence packaging are implemented
