@@ -1,0 +1,15 @@
+{
+  "retrieved_date": "2026-10-13",
+  "retrieved_timezone": "Asia/Seoul",
+  "url": "https://support.claude.com/en/articles/14604842-cyber-verification-program",
+  "title": "Cyber Verification Program | Claude Help Center",
+  "retrieved_content_sha256": "ca4ddfe6bea3193151ad75a569865734ad9b7d507a8e19ea8d495b0247dd2f3e",
+  "publisher": "Anthropic",
+  "summary": [
+    "Individual applicants can seek Defense Access on a paid plan; the other tiers are intended for organizations.",
+    "Applicants provide identity and security-work information and attest to applicable controls through the official portal.",
+    "Common secure-development tasks remain available outside CVP. A proposed exploit-validation workflow alone is not proof of blocked work.",
+    "Using a CVP grant for a customer-facing product or service requires separate approval."
+  ],
+  "note": "Bibliographic record and project-authored summary. Read the original source for complete and current requirements."
+}

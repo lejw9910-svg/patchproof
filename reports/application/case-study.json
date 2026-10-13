@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "experiment": "insecure-deserialization-load-then-deny",
+  "interpretation": "Counterfactual output-only comparison of these same observed executions, not a historical run or model experiment.",
+  "manifest_sha256": "de65f2d56faba564fba995182e08d76352eb8f0f4482ab13738b36619f786e82",
+  "candidate_sha256": "ee18dc548e0d066e8cf025a0dfca3fbc5c96c74edc99be707a345e5574def9bf",
+  "output_only_would_pass": true,
+  "observed_status": "fail",
+  "cases": [
+    {
+      "id": "pickle-callable-marker",
+      "kind": "attack",
+      "output_only_would_pass": true,
+      "observed_verdict": "fail",
+      "patched_observations": {
+        "pickle_class_resolutions": 1
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "pickle-callable-record",
+      "kind": "attack",
+      "output_only_would_pass": true,
+      "observed_verdict": "fail",
+      "patched_observations": {
+        "pickle_class_resolutions": 1
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "json-object",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "json-array",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "malformed-json",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "non-finite-json",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "overflowing-json-number",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "invalid-data-type",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "unsupported-format",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "missing-format",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "invalid-request",
+      "kind": "regression",
+      "output_only_would_pass": true,
+      "observed_verdict": "pass",
+      "patched_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    }
+  ]
+}

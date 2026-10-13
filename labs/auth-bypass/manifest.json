@@ -1,0 +1,211 @@
+{
+  "schema_version": 1,
+  "id": "auth-bypass",
+  "title": "Client-controlled authorization role",
+  "cwe": "CWE-863",
+  "cases": [
+    {
+      "id": "member-spoofs-admin-role",
+      "kind": "attack",
+      "input": {
+        "token": "alice-demo-token",
+        "role": "admin",
+        "action": "admin_panel"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "data": {
+          "users": [
+            "admin",
+            "alice",
+            "bob"
+          ]
+        }
+      },
+      "expected_patched": {
+        "status": "forbidden"
+      }
+    },
+    {
+      "id": "member-reads-admin-audit",
+      "kind": "attack",
+      "input": {
+        "token": "bob-demo-token",
+        "role": "admin",
+        "action": "read_audit"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "data": {
+          "events": [
+            "demo login",
+            "demo settings update"
+          ]
+        }
+      },
+      "expected_patched": {
+        "status": "forbidden"
+      }
+    },
+    {
+      "id": "valid-admin",
+      "kind": "regression",
+      "input": {
+        "token": "admin-demo-token",
+        "action": "admin_panel"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "data": {
+          "users": [
+            "admin",
+            "alice",
+            "bob"
+          ]
+        }
+      },
+      "expected_patched": {
+        "status": "ok",
+        "data": {
+          "users": [
+            "admin",
+            "alice",
+            "bob"
+          ]
+        }
+      }
+    },
+    {
+      "id": "valid-admin-audit",
+      "kind": "regression",
+      "input": {
+        "token": "admin-demo-token",
+        "action": "read_audit"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "data": {
+          "events": [
+            "demo login",
+            "demo settings update"
+          ]
+        }
+      },
+      "expected_patched": {
+        "status": "ok",
+        "data": {
+          "events": [
+            "demo login",
+            "demo settings update"
+          ]
+        }
+      }
+    },
+    {
+      "id": "member-profile",
+      "kind": "regression",
+      "input": {
+        "token": "alice-demo-token",
+        "action": "profile"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "data": {
+          "username": "alice",
+          "role": "member"
+        }
+      },
+      "expected_patched": {
+        "status": "ok",
+        "data": {
+          "username": "alice",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "id": "member-admin-action-denied",
+      "kind": "regression",
+      "input": {
+        "token": "alice-demo-token",
+        "action": "admin_panel"
+      },
+      "expected_vulnerable": {
+        "status": "forbidden"
+      },
+      "expected_patched": {
+        "status": "forbidden"
+      }
+    },
+    {
+      "id": "invalid-token",
+      "kind": "regression",
+      "input": {
+        "token": "unknown-token",
+        "role": "admin",
+        "action": "admin_panel"
+      },
+      "expected_vulnerable": {
+        "status": "unauthorized"
+      },
+      "expected_patched": {
+        "status": "unauthorized"
+      }
+    },
+    {
+      "id": "missing-credentials",
+      "kind": "regression",
+      "input": {
+        "role": "admin",
+        "action": "admin_panel"
+      },
+      "expected_vulnerable": {
+        "status": "unauthorized"
+      },
+      "expected_patched": {
+        "status": "unauthorized"
+      }
+    },
+    {
+      "id": "invalid-token-type",
+      "kind": "regression",
+      "input": {
+        "token": [
+          "admin-demo-token"
+        ],
+        "action": "profile"
+      },
+      "expected_vulnerable": {
+        "status": "unauthorized"
+      },
+      "expected_patched": {
+        "status": "unauthorized"
+      }
+    },
+    {
+      "id": "unknown-action",
+      "kind": "regression",
+      "input": {
+        "token": "admin-demo-token",
+        "action": "unknown"
+      },
+      "expected_vulnerable": {
+        "status": "invalid_input"
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    },
+    {
+      "id": "invalid-request-type",
+      "kind": "regression",
+      "input": [],
+      "expected_vulnerable": {
+        "status": "invalid_input"
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    }
+  ]
+}

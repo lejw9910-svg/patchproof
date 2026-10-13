@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "id": "path-traversal",
+  "title": "Contain local file reads within the public directory",
+  "cwe": "CWE-22",
+  "cases": [
+    {
+      "id": "parent-traversal",
+      "kind": "attack",
+      "input": {
+        "path": "../private/secret.txt"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "content": "SYNTHETIC_PRIVATE_RECORD\n"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "outside-public-directory"
+      }
+    },
+    {
+      "id": "sibling-prefix",
+      "kind": "attack",
+      "input": {
+        "path": "../public-backup/secret.txt"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "content": "SYNTHETIC_BACKUP_RECORD\n"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "outside-public-directory"
+      }
+    },
+    {
+      "id": "symlink-escape",
+      "kind": "attack",
+      "input": {
+        "path": "shortcut/secret.txt"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "content": "SYNTHETIC_PRIVATE_RECORD\n"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "outside-public-directory"
+      }
+    },
+    {
+      "id": "public-file",
+      "kind": "regression",
+      "input": {
+        "path": "welcome.txt"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "content": "Welcome to Patchproof.\n"
+      },
+      "expected_patched": {
+        "status": "ok",
+        "content": "Welcome to Patchproof.\n"
+      }
+    },
+    {
+      "id": "nested-public-file",
+      "kind": "regression",
+      "input": {
+        "path": "docs/guide.txt"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "content": "Nested public guide.\n"
+      },
+      "expected_patched": {
+        "status": "ok",
+        "content": "Nested public guide.\n"
+      }
+    },
+    {
+      "id": "normalized-public-file",
+      "kind": "regression",
+      "input": {
+        "path": "docs/../welcome.txt"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "content": "Welcome to Patchproof.\n"
+      },
+      "expected_patched": {
+        "status": "ok",
+        "content": "Welcome to Patchproof.\n"
+      }
+    },
+    {
+      "id": "missing-file",
+      "kind": "regression",
+      "input": {
+        "path": "missing.txt"
+      },
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "not-found"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "not-found"
+      }
+    },
+    {
+      "id": "empty-path",
+      "kind": "regression",
+      "input": {
+        "path": ""
+      },
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "invalid-path"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "invalid-path"
+      }
+    },
+    {
+      "id": "invalid-path-type",
+      "kind": "regression",
+      "input": {
+        "path": [
+          "welcome.txt"
+        ]
+      },
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "invalid-path"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "invalid-path"
+      }
+    },
+    {
+      "id": "invalid-request",
+      "kind": "regression",
+      "input": null,
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "invalid-request"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "invalid-request"
+      }
+    }
+  ]
+}

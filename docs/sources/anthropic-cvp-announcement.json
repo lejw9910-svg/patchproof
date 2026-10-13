@@ -1,0 +1,14 @@
+{
+  "retrieved_date": "2026-10-13",
+  "retrieved_timezone": "Asia/Seoul",
+  "url": "https://www.anthropic.com/news/cyber-verification-program",
+  "title": "Expanding the Cyber Verification Program \\ Anthropic",
+  "retrieved_content_sha256": "27a98516f2ad3941736da693700696f88e3a047a9478f31ab9f104fa4dc2bac6",
+  "publisher": "Anthropic",
+  "summary": [
+    "Anthropic announced three CVP access levels on October 6, 2026: Defense, Red Team, and Specialized.",
+    "Defense eligibility examples include individual researchers who have reported vulnerabilities; this project does not establish such a track record.",
+    "Applicants are verified and must substantiate the security controls for the relevant tier."
+  ],
+  "note": "Bibliographic record and project-authored summary. Read the original source for complete and current requirements."
+}

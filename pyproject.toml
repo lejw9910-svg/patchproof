@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "patchproof"
+version = "0.2.0"
+description = "Local, evidence-based verification of security patches against trusted fixtures"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [{name = "Patchproof contributors"}]
+dependencies = []
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+
+[project.scripts]
+patchproof = "patchproof.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

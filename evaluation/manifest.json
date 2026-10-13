@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "title": "Curated reference and negative patch evaluation",
+  "experiments": [
+    {
+      "lab_id": "path-traversal",
+      "id": "path-traversal-reference",
+      "source": "reference",
+      "expected_outcome": "pass",
+      "description": "The reviewed patched.py reference must pass the complete declared lab corpus.",
+      "required_safe_response_cases": [
+        "parent-traversal"
+      ],
+      "required_fail_cases": []
+    },
+    {
+      "lab_id": "path-traversal",
+      "id": "path-traversal-unchanged",
+      "source": "baseline",
+      "expected_outcome": "fail",
+      "description": "Unchanged vulnerable.py is a detection sanity control; it deliberately does not produce a safe primary attack response.",
+      "required_safe_response_cases": [],
+      "required_fail_cases": [
+        "parent-traversal"
+      ]
+    },
+    {
+      "lab_id": "path-traversal",
+      "id": "path-traversal-reject-all",
+      "source": "candidate",
+      "candidate": "mutations/path-traversal/reject-all.py",
+      "expected_outcome": "fail",
+      "description": "Returning the primary safe rejection for every input prevents useful functionality and must fail its successful control.",
+      "required_safe_response_cases": [
+        "parent-traversal"
+      ],
+      "required_fail_cases": [
+        "public-file"
+      ]
+    },
+    {
+      "lab_id": "path-traversal",
+      "id": "path-traversal-partial",
+      "source": "candidate",
+      "candidate": "mutations/path-traversal/string-prefix.py",
+      "expected_outcome": "fail",
+      "description": "Resolved string-prefix containment blocks the private path but accepts a sibling named public-backup.",
+      "required_safe_response_cases": [
+        "parent-traversal"
+      ],
+      "required_fail_cases": [
+        "sibling-prefix"
+      ]
+    },
+    {
+      "lab_id": "insecure-deserialization",
+      "id": "insecure-deserialization-reference",
+      "source": "reference",
+      "expected_outcome": "pass",
+      "description": "The reviewed patched.py reference must pass the complete declared lab corpus.",
+      "required_safe_response_cases": [
+        "pickle-callable-marker"
+      ],
+      "required_fail_cases": []
+    },
+    {
+      "lab_id": "insecure-deserialization",
+      "id": "insecure-deserialization-unchanged",
+      "source": "baseline",
+      "expected_outcome": "fail",
+      "description": "Unchanged vulnerable.py is a detection sanity control; it deliberately does not produce a safe primary attack response.",
+      "required_safe_response_cases": [],
+      "required_fail_cases": [
+        "pickle-callable-marker"
+      ]
+    },
+    {
+      "lab_id": "insecure-deserialization",
+      "id": "insecure-deserialization-reject-all",
+      "source": "candidate",
+      "candidate": "mutations/insecure-deserialization/reject-all.py",
+      "expected_outcome": "fail",
+      "description": "Returning the primary safe rejection for every input prevents useful functionality and must fail its successful control.",
+      "required_safe_response_cases": [
+        "pickle-callable-marker"
+      ],
+      "required_fail_cases": [
+        "json-object"
+      ]
+    },
+    {
+      "lab_id": "insecure-deserialization",
+      "id": "insecure-deserialization-partial",
+      "source": "candidate",
+      "candidate": "mutations/insecure-deserialization/objects-only.py",
+      "expected_outcome": "fail",
+      "description": "Data-only parsing blocks pickle but incorrectly rejects supported top-level JSON arrays.",
+      "required_safe_response_cases": [
+        "pickle-callable-marker"
+      ],
+      "required_fail_cases": [
+        "json-array"
+      ]
+    },
+    {
+      "lab_id": "auth-bypass",
+      "id": "auth-bypass-reference",
+      "source": "reference",
+      "expected_outcome": "pass",
+      "description": "The reviewed patched.py reference must pass the complete declared lab corpus.",
+      "required_safe_response_cases": [
+        "member-spoofs-admin-role"
+      ],
+      "required_fail_cases": []
+    },
+    {
+      "lab_id": "auth-bypass",
+      "id": "auth-bypass-unchanged",
+      "source": "baseline",
+      "expected_outcome": "fail",
+      "description": "Unchanged vulnerable.py is a detection sanity control; it deliberately does not produce a safe primary attack response.",
+      "required_safe_response_cases": [],
+      "required_fail_cases": [
+        "member-spoofs-admin-role"
+      ]
+    },
+    {
+      "lab_id": "auth-bypass",
+      "id": "auth-bypass-reject-all",
+      "source": "candidate",
+      "candidate": "mutations/auth-bypass/reject-all.py",
+      "expected_outcome": "fail",
+      "description": "Returning the primary safe rejection for every input prevents useful functionality and must fail its successful control.",
+      "required_safe_response_cases": [
+        "member-spoofs-admin-role"
+      ],
+      "required_fail_cases": [
+        "valid-admin"
+      ]
+    },
+    {
+      "lab_id": "auth-bypass",
+      "id": "auth-bypass-partial",
+      "source": "candidate",
+      "candidate": "mutations/auth-bypass/one-route-only.py",
+      "expected_outcome": "fail",
+      "description": "Server-held roles protect the primary admin route while the audit route still trusts client roles.",
+      "required_safe_response_cases": [
+        "member-spoofs-admin-role"
+      ],
+      "required_fail_cases": [
+        "member-reads-admin-audit"
+      ]
+    },
+    {
+      "lab_id": "sql-injection",
+      "id": "sql-injection-reference",
+      "source": "reference",
+      "expected_outcome": "pass",
+      "description": "The reviewed patched.py reference must pass the complete declared lab corpus.",
+      "required_safe_response_cases": [
+        "boolean-login-bypass"
+      ],
+      "required_fail_cases": []
+    },
+    {
+      "lab_id": "sql-injection",
+      "id": "sql-injection-unchanged",
+      "source": "baseline",
+      "expected_outcome": "fail",
+      "description": "Unchanged vulnerable.py is a detection sanity control; it deliberately does not produce a safe primary attack response.",
+      "required_safe_response_cases": [],
+      "required_fail_cases": [
+        "boolean-login-bypass"
+      ]
+    },
+    {
+      "lab_id": "sql-injection",
+      "id": "sql-injection-reject-all",
+      "source": "candidate",
+      "candidate": "mutations/sql-injection/reject-all.py",
+      "expected_outcome": "fail",
+      "description": "Returning the primary safe rejection for every input prevents useful functionality and must fail its successful control.",
+      "required_safe_response_cases": [
+        "boolean-login-bypass"
+      ],
+      "required_fail_cases": [
+        "valid-admin-login"
+      ]
+    },
+    {
+      "lab_id": "sql-injection",
+      "id": "sql-injection-partial",
+      "source": "candidate",
+      "candidate": "mutations/sql-injection/tautology-filter.py",
+      "expected_outcome": "fail",
+      "description": "A tautology blacklist rejects the primary Boolean payload but misses UNION-based account selection.",
+      "required_safe_response_cases": [
+        "boolean-login-bypass"
+      ],
+      "required_fail_cases": [
+        "union-login-bypass"
+      ]
+    },
+    {
+      "id": "insecure-deserialization-load-then-deny",
+      "lab_id": "insecure-deserialization",
+      "source": "candidate",
+      "candidate": "mutations/insecure-deserialization/load-then-deny.py",
+      "expected_outcome": "fail",
+      "description": "The candidate deserializes the executable fixture then returns the exact expected denial; independent pickle class-resolution observation must reject both attacks.",
+      "required_safe_response_cases": [
+        "pickle-callable-marker",
+        "pickle-callable-record"
+      ],
+      "required_fail_cases": [
+        "pickle-callable-marker",
+        "pickle-callable-record"
+      ]
+    }
+  ]
+}

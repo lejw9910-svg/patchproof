@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "tests_exit_code": 0,
+  "verification_status": "pass",
+  "lab_count": 4,
+  "case_count": 44,
+  "attack_cases": 9,
+  "regression_cases": 35,
+  "benchmark_status": "pass",
+  "benchmark_metrics": {
+    "experiments": 17,
+    "expected_good": 4,
+    "expected_bad": 13,
+    "accepted_good": 4,
+    "rejected_bad": 13,
+    "false_acceptances": 0,
+    "false_rejections": 0,
+    "errors": 0,
+    "inconclusive": 0,
+    "check_mismatches": 0
+  },
+  "evidence_integrity": {
+    "status": "pass",
+    "files_verified": 26,
+    "warning": "Integrity only: this unsigned bundle does not establish authenticity, authorization, or the truth of its reported observations."
+  },
+  "claude_run_performed": false,
+  "scope": "Local curated synthetic evidence; no third-party vulnerability finding, hosted CI run, model evaluation, or CVP approval is claimed."
+}

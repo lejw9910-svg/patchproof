@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "id": "sql-injection",
+  "title": "Interpolated SQL account identifier",
+  "cwe": "CWE-89",
+  "cases": [
+    {
+      "id": "boolean-login-bypass",
+      "kind": "attack",
+      "input": {
+        "account_id": "1 OR 1=1",
+        "password": "wrong"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "account": {
+          "id": 1,
+          "username": "admin",
+          "role": "admin"
+        }
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    },
+    {
+      "id": "union-login-bypass",
+      "kind": "attack",
+      "input": {
+        "account_id": "999 UNION SELECT id, username, role FROM users WHERE id = 1 OR 1 = 0",
+        "password": "wrong"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "account": {
+          "id": 1,
+          "username": "admin",
+          "role": "admin"
+        }
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    },
+    {
+      "id": "valid-admin-login",
+      "kind": "regression",
+      "input": {
+        "account_id": 1,
+        "password": "admin-demo-only"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "account": {
+          "id": 1,
+          "username": "admin",
+          "role": "admin"
+        }
+      },
+      "expected_patched": {
+        "status": "ok",
+        "account": {
+          "id": 1,
+          "username": "admin",
+          "role": "admin"
+        }
+      }
+    },
+    {
+      "id": "quoted-password-preserved",
+      "kind": "regression",
+      "input": {
+        "account_id": 2,
+        "password": "reader's-demo-only"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "account": {
+          "id": 2,
+          "username": "reader",
+          "role": "member"
+        }
+      },
+      "expected_patched": {
+        "status": "ok",
+        "account": {
+          "id": 2,
+          "username": "reader",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "id": "decimal-string-id",
+      "kind": "regression",
+      "input": {
+        "account_id": "2",
+        "password": "reader's-demo-only"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "account": {
+          "id": 2,
+          "username": "reader",
+          "role": "member"
+        }
+      },
+      "expected_patched": {
+        "status": "ok",
+        "account": {
+          "id": 2,
+          "username": "reader",
+          "role": "member"
+        }
+      }
+    },
+    {
+      "id": "wrong-password",
+      "kind": "regression",
+      "input": {
+        "account_id": 1,
+        "password": "wrong"
+      },
+      "expected_vulnerable": {
+        "status": "unauthorized"
+      },
+      "expected_patched": {
+        "status": "unauthorized"
+      }
+    },
+    {
+      "id": "unknown-account",
+      "kind": "regression",
+      "input": {
+        "account_id": 999,
+        "password": "wrong"
+      },
+      "expected_vulnerable": {
+        "status": "unauthorized"
+      },
+      "expected_patched": {
+        "status": "unauthorized"
+      }
+    },
+    {
+      "id": "missing-credentials",
+      "kind": "regression",
+      "input": {},
+      "expected_vulnerable": {
+        "status": "invalid_input"
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    },
+    {
+      "id": "invalid-password-type",
+      "kind": "regression",
+      "input": {
+        "account_id": 1,
+        "password": []
+      },
+      "expected_vulnerable": {
+        "status": "invalid_input"
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    },
+    {
+      "id": "invalid-id-type",
+      "kind": "regression",
+      "input": {
+        "account_id": true,
+        "password": "admin-demo-only"
+      },
+      "expected_vulnerable": {
+        "status": "invalid_input"
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    },
+    {
+      "id": "malformed-id",
+      "kind": "regression",
+      "input": {
+        "account_id": "'",
+        "password": "wrong"
+      },
+      "expected_vulnerable": {
+        "status": "invalid_input"
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    },
+    {
+      "id": "invalid-request-type",
+      "kind": "regression",
+      "input": null,
+      "expected_vulnerable": {
+        "status": "invalid_input"
+      },
+      "expected_patched": {
+        "status": "invalid_input"
+      }
+    }
+  ]
+}

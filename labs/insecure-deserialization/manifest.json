@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "id": "insecure-deserialization",
+  "title": "Reject callable reconstruction and preserve data-only JSON",
+  "cwe": "CWE-502",
+  "cases": [
+    {
+      "id": "pickle-callable-marker",
+      "kind": "attack",
+      "input": {
+        "format": "pickle",
+        "fixture": "callable-marker"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "value": "PICKLE_RECONSTRUCTION_EXECUTED"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "unsafe-serialization-format"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 1
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "pickle-callable-record",
+      "kind": "attack",
+      "input": {
+        "format": "pickle",
+        "fixture": "callable-record"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "value": {
+          "marker": "PICKLE_EXPRESSION_EXECUTED",
+          "answer": 42
+        }
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "unsafe-serialization-format"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 1
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "json-object",
+      "kind": "regression",
+      "input": {
+        "format": "json",
+        "data": "{\"name\":\"Ada\",\"roles\":[\"reader\"],\"active\":true}"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "value": {
+          "name": "Ada",
+          "roles": [
+            "reader"
+          ],
+          "active": true
+        }
+      },
+      "expected_patched": {
+        "status": "ok",
+        "value": {
+          "name": "Ada",
+          "roles": [
+            "reader"
+          ],
+          "active": true
+        }
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "json-array",
+      "kind": "regression",
+      "input": {
+        "format": "json",
+        "data": "[1,\"two\",null,3.5]"
+      },
+      "expected_vulnerable": {
+        "status": "ok",
+        "value": [
+          1,
+          "two",
+          null,
+          3.5
+        ]
+      },
+      "expected_patched": {
+        "status": "ok",
+        "value": [
+          1,
+          "two",
+          null,
+          3.5
+        ]
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "malformed-json",
+      "kind": "regression",
+      "input": {
+        "format": "json",
+        "data": "{broken"
+      },
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "invalid-json"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "invalid-json"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "non-finite-json",
+      "kind": "regression",
+      "input": {
+        "format": "json",
+        "data": "NaN"
+      },
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "invalid-json"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "invalid-json"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "overflowing-json-number",
+      "kind": "regression",
+      "input": {
+        "format": "json",
+        "data": "1e400"
+      },
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "invalid-json"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "invalid-json"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "invalid-data-type",
+      "kind": "regression",
+      "input": {
+        "format": "json",
+        "data": {
+          "already": "parsed"
+        }
+      },
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "invalid-data"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "invalid-data"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "unsupported-format",
+      "kind": "regression",
+      "input": {
+        "format": "yaml",
+        "data": "name: Ada"
+      },
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "unsupported-format"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "unsupported-format"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "missing-format",
+      "kind": "regression",
+      "input": {},
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "unsupported-format"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "unsupported-format"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    },
+    {
+      "id": "invalid-request",
+      "kind": "regression",
+      "input": [],
+      "expected_vulnerable": {
+        "status": "rejected",
+        "reason": "invalid-request"
+      },
+      "expected_patched": {
+        "status": "rejected",
+        "reason": "invalid-request"
+      },
+      "expected_vulnerable_observations": {
+        "pickle_class_resolutions": 0
+      },
+      "expected_patched_observations": {
+        "pickle_class_resolutions": 0
+      }
+    }
+  ]
+}

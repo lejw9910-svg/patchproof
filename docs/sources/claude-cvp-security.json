@@ -1,0 +1,15 @@
+{
+  "retrieved_date": "2026-10-13",
+  "retrieved_timezone": "Asia/Seoul",
+  "url": "https://support.claude.com/en/articles/17202708-cyber-verification-program-security-requirements",
+  "title": "Cyber Verification Program Security Requirements | Claude Help Center",
+  "retrieved_content_sha256": "03b78932d59b91103ec581fd12caed3a3dbb41d4364fd64702e0240f63e63709",
+  "publisher": "Anthropic",
+  "summary": [
+    "Individual Defense Access requires identity-provider login with MFA and personal, unshared access.",
+    "The December 15, 2026 cutoff requires phishing-resistant MFA and the transition away from static model credentials; platform-specific rules apply.",
+    "Individual grant traffic is retained and monitored, without a zero-retention option.",
+    "Incident reporting, cooperation, and ongoing-review duties apply. Consult the current official text for exact deadlines and exceptions."
+  ],
+  "note": "Bibliographic record and project-authored summary. Read the original source for complete and current requirements."
+}
