@@ -36,7 +36,8 @@ Red Team Access와 Specialized Access는 현재 조직 대상입니다.
 [검증 보고서](../reports/application/verification.json)와
 [벤치마크 보고서](../reports/application/benchmark.json)는 작은 합성 사례에서의
 도구 동작을 보여 주며, 실제 취약점 발견이나 Claude 성능 평가를 뜻하지 않습니다.
-실제 저장소 URL은 공개 또는 확인 후에만 추가합니다.
+프로젝트 저장소는 [lejw9910-svg/patchproof](https://github.com/lejw9910-svg/patchproof)입니다.
+프로젝트 공개 자체를 제3자 취약점 제보 실적이나 CVP 승인으로 기재하지 않습니다.
 
 현재 로컬 실행에서 Python 3.12.14로 **테스트 109개**가 통과했습니다. 네 실습의
 검증 사례는 **총 44개(공격 9개, 정상 동작 회귀 35개)**입니다. 선별된 벤치마크는
@@ -95,4 +96,4 @@ Red Team Access와 Specialized Access는 현재 조직 대상입니다.
 강화하고, 가능한 범위에서 독립적인 검토를 받는 기간으로 삼습니다. 실적이 생기면
 실제로 수행한 내용만 추가합니다. 신청서는
 [공식 Verification Portal](https://portal.anthropic.com/programs)에서 직접 제출하며,
-이 자료 작성 과정에서는 외부 전송이나 신청 제출을 하지 않았습니다.
+이 작업에서는 CVP 신청 제출을 하지 않았습니다.

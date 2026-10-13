@@ -1,5 +1,7 @@
 # Patchproof
 
+[![Security tests](https://github.com/lejw9910-svg/patchproof/actions/workflows/security-tests.yml/badge.svg)](https://github.com/lejw9910-svg/patchproof/actions/workflows/security-tests.yml)
+
 ## 프로젝트 개요
 
 Patchproof는 **보안 패치가 재현된 취약점을 막으면서 정상 기능을 유지하는지**

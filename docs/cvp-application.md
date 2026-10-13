@@ -120,11 +120,10 @@ third-party vulnerability finding or a Claude result.
   [control register](security-controls.md), and
   [manual Claude workflow](claude-workflow.md).
 
-Repository URL: **pending publication or confirmation**. Replace this text with
-the actual URL only when the reviewed revision is available there. Before
-submission, open every evidence link and verify that its contents match that
-revision. A connected GitHub identity is not a substitute for a published project
-or verified research record.
+Repository: [lejw9910-svg/patchproof](https://github.com/lejw9910-svg/patchproof).
+Before submission, open every evidence link and verify that its contents match
+the reviewed repository revision. Publishing this project does not establish a
+history of third-party vulnerability disclosures or program approval.
 
 ## Private completion steps
 
